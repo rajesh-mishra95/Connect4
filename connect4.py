@@ -1,5 +1,5 @@
 import numpy as np
-# change to dropping the move in one column rather than choose the coordinate.
+# change one column rather than choose the coordinate.
 
 class Game():
     def __init__(self, row, col):
