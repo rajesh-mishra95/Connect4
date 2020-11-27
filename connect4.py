@@ -1,5 +1,4 @@
 import numpy as np
-# change one column rather than choose the coordinate.
 
 class Game():
     def __init__(self, row, col):
@@ -15,24 +14,19 @@ class Game():
         return self.state
 
     def play(self):
-        user_input = input("Where would you like to play your turn? : ")
-        r = int(user_input[0]) - 1
-        c = int(user_input[1]) - 1
-        assert r >= 0 and r <= 5
-        assert c >= 0 and c <= 6 
-        if self.grid[r,c] != 0:
-            print("not zero")
-            print("Invalid move")
-        elif r+1 != self.row:
-            if self.grid[r+1,c] == 0:
-                print("below empty")
-                print("Invalid move")
-            else:
-                user_colour = int(input("1 or 2? : "))
-                self.grid[r,c] = user_colour
+        user_input = input("Which column do you choose ? : ")
+        c = int(user_input) - 1
+        assert c >= 0 and c <= self.col
+        if self.grid[0,c] != 0:
+            print("Choose another column.")
+            self.play()
         else:
             user_colour = int(input("1 or 2? : "))
-            self.grid[r,c] = user_colour
+            for i in range(self.row-1):
+                if self.grid[i+1,c] != 0:
+                    self.grid[i,c] = user_colour
+                else:
+                    self.grid[self.row,c] = user_colour
 
         return self.get_grid()
 
